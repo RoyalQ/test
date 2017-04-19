@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface XIBViewController : UIViewController
-
+@property(nonatomic,retain) NSString *Value2;
 @end

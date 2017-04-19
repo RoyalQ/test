@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CodeViewController : UIViewController
-
+@property(nonatomic,retain) NSString *firstValue;
 @end

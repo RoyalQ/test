@@ -9,7 +9,6 @@
 #import "CodeViewController.h"
 
 @interface CodeViewController ()
-
 @end
 
 @implementation CodeViewController
@@ -17,7 +16,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor=[UIColor redColor];
+    self.view.backgroundColor=[UIColor whiteColor];
+    UILabel *inLabel=[[UILabel alloc] initWithFrame:CGRectMake(100, 100, 50, 50)];
+    [self.view addSubview:inLabel];
+    inLabel.textAlignment=NSTextAlignmentLeft;
+    inLabel.backgroundColor=[UIColor greenColor];
+    inLabel.textColor=[UIColor blackColor];
+    inLabel.text=_firstValue;
+    UIButton *back3=[UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:back3];
+    back3.backgroundColor=[UIColor redColor];
+    back3.frame=CGRectMake(100, 210, 50, 50);
+    [back3 addTarget:self action:@selector(backclick) forControlEvents:UIControlEventTouchUpInside];
+}
+-(void)backclick{
+      [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

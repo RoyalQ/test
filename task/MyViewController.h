@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface MyViewController : UIViewController
-
+@property(nonatomic,retain) NSString *Value3;
 @end

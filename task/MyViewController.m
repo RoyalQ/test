@@ -7,7 +7,7 @@
 //
 
 #import "MyViewController.h"
-
+#import "ViewController.h"
 @interface MyViewController ()
 
 @end
@@ -16,9 +16,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.view.backgroundColor=[UIColor greenColor];
+    UIButton *back3=[UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:back3];
+    back3.backgroundColor=[UIColor redColor];
+    back3.frame=CGRectMake(100, 210, 50, 50);
+    [back3 addTarget:self action:@selector(backclick) forControlEvents:UIControlEventTouchUpInside];
+    UILabel *inLabel=[[UILabel alloc] initWithFrame:CGRectMake(100, 100, 50, 50)];
+    [self.view addSubview:inLabel];
+    inLabel.textAlignment=NSTextAlignmentLeft;
+    inLabel.backgroundColor=[UIColor whiteColor];
+    inLabel.textColor=[UIColor blackColor];
+    inLabel.text=_Value3;
 }
-
+-(void)backclick{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

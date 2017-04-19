@@ -10,10 +10,11 @@
 #import "MyViewController.h"
 #import "XIBViewController.h"
 #import "CodeViewController.h"
-@interface ViewController ()
-
+@interface ViewController ()<UITextFieldDelegate>
+{
+    UITextField *text1;
+}
 @end
-
 @implementation ViewController
 
 - (void)viewDidLoad {
@@ -47,39 +48,36 @@
     [btnCode addTarget:self action:@selector(btnCodeClick) forControlEvents:UIControlEventTouchUpInside];
     
     btnCode.frame=CGRectMake(100,320,100,100);//跳代码
-}
+    
+    text1 = [[UITextField alloc] initWithFrame:CGRectMake(100, 400, 100, 50)];
+    text1.backgroundColor = [UIColor purpleColor];
+    [self.view addSubview:text1];}//
 - (void)btnClick
 {
-    
-    UIStoryboard *myStoryboard = [UIStoryboard storyboardWithName:@"test"bundle:nil];
-    
-    UIViewController *secondVC = [myStoryboard  instantiateViewControllerWithIdentifier:@"MyViewController"];
-    [self presentViewController:secondVC animated:YES completion:nil];
-    while (secondVC.presentingViewController) {
-        secondVC=secondVC.presentingViewController;
-        [secondVC dismissViewControllerAnimated:YES completion:NULL];}}
+    MyViewController *myvc=[[MyViewController alloc]init];
+    myvc.Value3=text1.text;
+    [self presentViewController:myvc animated:YES completion:nil];
+    }
 - (void)btnXIBClick
 
 {
     
     XIBViewController *xibVC=[[XIBViewController alloc]initWithNibName:@"XIBViewController"bundle:nil];
+    xibVC.Value2=text1.text;
     [self presentViewController:xibVC animated:YES completion:nil];
-    while (xibVC.presentingViewController) {
-        xibVC=xibVC.presentingViewController;
-        [xibVC dismissViewControllerAnimated:YES completion:NULL];}
 }
 - (void)btnCodeClick
 
 {
     
     CodeViewController *codeVC = [[CodeViewController alloc]init];
-    
-    [self presentViewController:codeVC animated:YES completion:nil];
-    
-}- (void)didReceiveMemoryWarning {
+    codeVC.firstValue=text1.text;
+    [self presentViewController:codeVC animated:YES completion:nil];}
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 
 @end
+
