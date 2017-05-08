@@ -36,13 +36,14 @@
     manager.requestSerializer.timeoutInterval = 5;//这个值是什么意思？  //请求超时时间5s
     [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
 
-    
     //请求
     [manager GET:URLString parameters:nil progress:nil
          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
          {
+            
              if ([responseObject[@"msg"] isEqualToString:@"ok"])
              {
+                 [juhua hideAnimated:YES afterDelay:1];
                  //_datas=[[NSMutableArray alloc]init]; 不使用懒加载的话可以在这里用
                  for(NSDictionary *eachDic in responseObject[@"links"])
                  {
@@ -51,27 +52,26 @@
                      [self.datas addObject:vedio];//换成_datas会怎么样？  懒加载调用 不初始化不会输出数据
                      
                      _showButton.hidden=false;                   }
-             }
+                            }
              else
              {
                  NSLog(@"数据错误");
+                 [juhua hideAnimated:YES afterDelay:1];
              }
          }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
          {
-             NSLog(@"网络超时");
-         }
-     ];
-    [juhua hideAnimated:YES];
+            NSLog(@"网络超时");
+             [juhua hideAnimated:YES afterDelay:1];
+         }];
+    
+    
 }
 - (IBAction)show:(id)sender {
-    MBProgressHUD *juhua2=[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    juhua2.label.text=@"又转啊";
     NSLog(@"%@",_datas[1]);
         for (Vedio *vedio in _datas) {
             NSLog(@"标题:%@，图片:%@",vedio.name,vedio.img);
         }
-    [juhua2 hideAnimated:YES];
 }
 
 //为什么要有这个方法？
